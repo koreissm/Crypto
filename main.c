@@ -2,8 +2,8 @@
 
 int main(int argc, char const *argv[]) {
 	
-	//testPrimeNumbers ();
-	polynomeTests ();
+	//testPrimeNumbers();
+	testPolynomes();
 	
 	return 0;
 }

@@ -15,4 +15,4 @@ doc: Doxyfile
 
 clean:
 	rm -f main *.o
-	rm -R documentation/
+	rm -fR documentation/

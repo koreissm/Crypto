@@ -1,6 +1,6 @@
 #include "library.h"
 
-//Fonction d'affichage d'un polynôme
+// Polynome printing function
 void printPolynome (int p, int degre) {
 	int i;
 	int nbBits = 8 * sizeof p;
@@ -8,7 +8,7 @@ void printPolynome (int p, int degre) {
 
 	printf("\t");
 	for (i = degre-1; i >= 0; i--) {
-		//On fait un décalage à gauche
+		// Performing left-hand shift
 		tmp = 1 << i;
 		tmp = (tmp & p) >> i;
 		//Affichage
@@ -26,9 +26,9 @@ void afficher_bits_octet (int octet) {
 
 	int nbBits = 8 * sizeof octet;
 
-	//Initialisation
+	// Init
 	for (i = nbBits-1; i >= 0; i--) {
-		//On fait un décalage à gauche
+		// Performing left-hand shift
 		tmp = 1 << i;
 		tmp = (tmp & octet) >> i;
 		
@@ -45,13 +45,13 @@ void afficher_bits_octet (int octet) {
 //Addition de deux polynomes dans F2
 //P et Q sont des int (sur 32 bits), ils representent les coefficients du i-ème élément du polynôme 
 //L'addition dans F2 revient à faire un XOR entre chaque i-ème coef de P et Q
-int add (int p, int q) {
+int addition (int p, int q) {
 	return p ^ q;
 }
 
 //Multiplication de deux polynomes dans F2 par l'algo du Russian Peasant
 //Il nous faut un polynôme irreductible => ici : x^8 + x^4 + x^3 + x + 1
-int mult (int p, int q) {
+int multiplication (int p, int q) {
 	int result = 0;
 
 	while (q) {
@@ -73,7 +73,7 @@ int mult (int p, int q) {
 //On additionne tous les puissances de 2 inférieures au dégré d,
 //Puis on fait une opération ET de l'entier obtenu avec le polynôme initial
 //Ce qui aura pour effet de prendre uniquement les bits de poids inférieur au dégré
-int troncate (int p, int d) {
+int truncate (int p, int d) {
 	int degre;
 	int i;
 	for (i = d; i > 0; i--) {
@@ -83,7 +83,7 @@ int troncate (int p, int d) {
 }
 
 //Exponentiation modulaire d'un polynôme
-int expMod (int p, int base, int exp, int m) {
+int modularExponentiation (int p, int base, int exp, int m) {
 	int result = 1;
 
 	while (exp > 0) {

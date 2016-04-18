@@ -2,6 +2,6 @@
 #include <math.h>
 #include "library.h"
 
-void testPrimeNumbers () ;
+void testPrimeNumbers();
 
-void polynomeTests ();
+void testPolynomes();
