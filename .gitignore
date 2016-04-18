@@ -1,6 +1,9 @@
 # Executables
 main
 
+# Documentation
+documentation/*
+
 # Object files
 *.o
 *.ko

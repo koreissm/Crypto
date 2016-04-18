@@ -10,5 +10,9 @@ main: tests.o
 	gcc -o main main.c tests.o library.o
 	./main
 
-clean :
+doc: Doxyfile
+	doxygen Doxyfile
+
+clean:
 	rm -f main *.o
+	rm -R documentation/

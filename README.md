@@ -37,3 +37,11 @@ Simply run :
 ```
 make clean
 ```
+
+## How to generate documentation
+
+Simply run :
+```
+make doc
+```
+Documentation will then be available in the `documentation` folder.
