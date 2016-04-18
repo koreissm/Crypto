@@ -13,4 +13,5 @@ int main(int argc, char const *argv[]) {
 	testPolynomes();
 	
 	return 0;
+	
 }
