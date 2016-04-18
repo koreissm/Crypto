@@ -1,3 +1,10 @@
+/** *************************************************************************
+ *
+ * @file library.h
+ * @brief Definition of requested operations
+ *
+ ****************************************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>

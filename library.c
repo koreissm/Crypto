@@ -1,3 +1,10 @@
+/** *************************************************************************
+ *
+ * @file library.c
+ * @brief implementation of functions defined in @link library.h @endlink
+ *
+ ****************************************************************************/
+
 #include "library.h"
 
 // Polynome printing function

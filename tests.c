@@ -1,4 +1,11 @@
-#include "tests.h"
+/** *************************************************************************
+ *
+ * @file tests.c
+ * @brief implementation of functions defined in @link tests.h @endlink
+ *
+ ****************************************************************************/
+
+ #include "tests.h"
 
 void testPrimeNumbers() {
 	int n = pow(10, 7);
