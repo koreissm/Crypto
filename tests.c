@@ -28,24 +28,24 @@ void testPrimeNumbers() {
 void testPolynomes() {
 	int p = 501, q = 130503;
 
-	//Addition
+	// // Addition
 	// printPolynome (p, 32);
 	// printf("+\n");
 	// printPolynome (q, 32);
 	// printf("___________________________________________________________________________________________________________________________\n");
-	// printPolynome (add (p, q), 32);
+	// printPolynome (addition (p, q), 32);
 
-	//Multiplication
+	// // Multiplication
 	// printPolynome (p, 32);
 	// printf("x\n");
 	// printPolynome (q, 32);
 	// printf("___________________________________________________________________________________________________________________________\n");
-	// printPolynome (mult (p, q), 32);
+	// printPolynome (multiplication (p, q), 32);
 
-	//Troncature
+	// // Troncature
 	// printPolynome (p, 32);
 	// int d = 5;
-	// p = troncate (p, d);
+	// p = truncate (p, d);
 	// printf("Troncature du polynôme au dégré %d: ", d);
 	// printPolynome (p, 32);
 	// afficher_bits_octet (p);
