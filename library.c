@@ -7,73 +7,49 @@
 
 #include "library.h"
 
-// Polynome printing function
-void printPolynome (int p, int degre) {
+// Printing a polynom
+void printPolynom (int p, int degre) {
 	int i;
-	int nbBits = 8 * sizeof p;
-	int tmp;
 
 	printf("\t");
-	for (i = degre-1; i >= 0; i--) {
-		// Performing left-hand shift
-		tmp = 1 << i;
+	for (i = degre-1; i-- >= 0;) {
+		// Selecting the i -th element of P
+		int tmp = 1 << i;
 		tmp = (tmp & p) >> i;
-		//Affichage
-		if ((tmp & 1) != 0 && (i != 0))
+
+		//Printing
+		if (tmp != 0 && i != 0)
 			printf("x^%d + ", i);
-		if (i == 0 && ((tmp & 1) != 0))
+		if (i == 0 && tmp != 0)
 			printf("1");
 	}
 	printf("\n");
 }
 
-void afficher_bits_octet (int octet) {
-
-	int i, tmp;
-
-	int nbBits = 8 * sizeof octet;
-
-	// Init
-	for (i = nbBits-1; i >= 0; i--) {
-		// Performing left-hand shift
-		tmp = 1 << i;
-		tmp = (tmp & octet) >> i;
-		
-		//Affichage
-		if ((tmp & 1) == 0)
-			printf("%d ", tmp);
-		else 
-			printf("1 ");
-	}
-
-	printf("\n");
-}
-
-//Addition de deux polynomes dans F2
-//P et Q sont des int (sur 32 bits), ils representent les coefficients du i-ème élément du polynôme 
-//L'addition dans F2 revient à faire un XOR entre chaque i-ème coef de P et Q
+//Polynomial addition in F2
+//P and Q are int (on 32 bits).
+//As long as we are in the Z/2Z ring, the addition will be considerated like a simple XOR between P and Q
 int addition (int p, int q) {
 	return p ^ q;
 }
 
-//Multiplication de deux polynomes dans F2 par l'algo du Russian Peasant
-//Il nous faut un polynôme irreductible => ici : x^8 + x^4 + x^3 + x + 1
+//Polynomial multiplication
 int multiplication (int p, int q) {
-	int result = 0;
 
-	while (q) {
-		if (q & 1) //Si q impair, on ajoute le terme correspondant à notre somme
-			result ^= p;
+	if (q == 0) //We terminate if q null
+		return 0;
+	else {
+		if (q == 1) //If we have to multiply by 1, the result doesn't change
+			return p;
+		else {
+			int tmp = (q&1) * p; //Multiplying the current item of b by p's items
+			q >>= 1; //Passing to the next element of B
 
-		if (p & 0x80000000) // Si on n'a pas dépassé la taille max d'un int (2^32 - 1 je crois)
-			p = (p << 1) ^ 0x11B; //On fait un XOR de p décalé à gauche de 1 avec le polynôme irréductible
-		else //Sinon alors il y a overflow, donc on fait décalage à gauche de p pour avoir plus de place
-			p <<= 1;
-
-		q >>= 1; //On fait bouger q de 1 (on le divise)
+			int result = multiplication (p, q); //Recursive call with the new value of Q
+			result <<= 1; //Shifting the result to the left (like in real multiplication)
+			return tmp ^ result; //Returning the result
+		}
 	}
-
-	return result;
 }
 
 //Troncature d'un polynome P à un dégré d

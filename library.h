@@ -19,7 +19,7 @@ Va-t-on faire les fonctions avec des int ? (manipulation de bits) ou avec d'autr
 /**
  * Displays a polynomial
  */
-void printPolynome (int p, int degre);
+void printPolynom (int p, int degre);
 
 /**
  * Polynomial addition

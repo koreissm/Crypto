@@ -29,29 +29,29 @@ void testPolynomes() {
 	int p = 501, q = 130503;
 
 	// // Addition
-	// printPolynome (p, 32);
+	// printPolynom (p, 32);
 	// printf("+\n");
-	// printPolynome (q, 32);
+	// printPolynom (q, 32);
 	// printf("___________________________________________________________________________________________________________________________\n");
-	// printPolynome (addition (p, q), 32);
+	// printPolynom (addition (p, q), 32);
 
 	// // Multiplication
-	// printPolynome (p, 32);
-	// printf("x\n");
-	// printPolynome (q, 32);
-	// printf("___________________________________________________________________________________________________________________________\n");
-	// printPolynome (multiplication (p, q), 32);
+	printPolynom (p, 32);
+	printf("x\n");
+	printPolynom (q, 32);
+	printf("___________________________________________________________________________________________________________________________\n");
+	printPolynom (multiplication (p, q), 32);
 
 	// // Troncature
-	// printPolynome (p, 32);
+	// printPolynom (p, 32);
 	// int d = 5;
 	// p = truncate (p, d);
 	// printf("Troncature du polynôme au dégré %d: ", d);
-	// printPolynome (p, 32);
+	// printPolynom (p, 32);
 	// afficher_bits_octet (p);
 
 	//Exponentiation modulaire
-	printPolynome(p, 32);
-	p = modularExponentiation(p, 4, 13, 497);
-	printPolynome(p, 32);
+	//printPolynom(p, 32);
+	//p = modularExponentiation(p, 4, 13, 497);
+	//printPolynom(p, 32);
 }
