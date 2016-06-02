@@ -264,6 +264,14 @@ int isPolynomialPrimeByEratosthene(polynomial * p) {
 	return result;
 }
 
+//////////////////////////////////////////////////////////////// Primality check
+//////////////////////////////////////////////////////////////// (for polynomials)
+
+int isPolynomialPrimitive(polynomial * p) {
+	int result;
+	return result;
+}
+
 //Génère tous les nombres premiers entre 1 et n
 //On incrémente par pas de 2 à chaque fois à partir de 3
 //Ce qui élimine déjà tous les nombres pairs
