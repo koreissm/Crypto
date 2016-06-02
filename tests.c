@@ -51,6 +51,13 @@ void testPolynomes() {
 	//printPolynom (r, 32);
 	//printPolynom (qu, 32);
 
+	// // Division by increasing powers
+	//int qu, r;
+	//divideByIncreasingPowers(q, p, &qu, &r);
+	//printf("Q : %d, R : %d\n", qu, r);
+	//printPolynom (r, 32);
+	//printPolynom (qu, 32);
+
 	// // Troncature
 	// printPolynom (p, 32);
 	// int d = 5;
@@ -59,10 +66,9 @@ void testPolynomes() {
 	// printPolynom (p, 32);
 	// afficher_bits_octet (p);
 
-	//Exponentiation modulaire
-	//printPolynom(p, 32);
-	//p = modularExponentiation(p, 4, 13, 497);
-	//printPolynom(p, 32);
+	// Modular Exponentiation
+	// effectiveModularExponentiation (4,13, 450);
+	// modularExponentiationBis (4, 13, 450);
 }
 
 void testErastothene() {

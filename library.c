@@ -90,6 +90,19 @@ int getLeadingCoef (int p) {
 	}
 }
 
+//Return the last coef (the smallest) of the p polynom
+int getLastCoef (int p){
+	int i;
+	int tmp = 0;
+	for (i = 31; i-- >= 0;) {
+	 	if ((((1 << i) & p) >> i) == 1)
+	  		tmp = 1 << i;
+	}
+
+	return tmp;
+
+}
+
 //Calculating the euclidian Division
 //Returning the quotient and the remainder
 void euclidianDivision (int a, int b, int* q, int* r) {
@@ -109,6 +122,26 @@ void euclidianDivision (int a, int b, int* q, int* r) {
 	*r = rtmp;
 }
 
+//Calculating the division by increasing powers
+//Returning the quotient and the remainder
+int divideByIncreasingPowers (int a, int b, int* q, int* r){
+	int qtmp = 0;
+	int rtmp = a;
+	int cpt = 1;
+
+    while(cpt<5){
+		int t = getLastCoef(rtmp) / getLastCoef(b); //We divide the last coef of R by the last coef of B polynom
+        
+		qtmp ^= t;
+		rtmp ^= t *  b; // A = Q . lc(Q) + R => R = A + Q.lc(Q)  (lc stands for Last coef)
+		cpt++;
+    }
+
+	*q = qtmp;
+	*r = rtmp;
+	
+}
+
 //Troncature d'un polynome P à un dégré d
 //On additionne tous les puissances de 2 inférieures au dégré d,
 //Puis on fait une opération ET de l'entier obtenu avec le polynôme initial
@@ -122,19 +155,38 @@ int truncate (int p, int d) {
 	return (p & ((int) degre));
 }
 
-//Exponentiation modulaire d'un polynôme
-int modularExponentiation (int p, int base, int exp, int m) {
+//The most effective method for modular exponentiation
+int effectiveModularExponentiation (int b, int e, int m) {
 	int result = 1;
 
-	while (exp > 0) {
-		if ((exp & 1) > 0)
-			result = (result * base) % m;
-		exp >>= 1;
-		base = (base * base) % m;
+	//Executed as many times as the binary size of e
+	while (e > 0) {
+		if ((e & 1) > 0)
+			result = (result * b) % m;
+		//Truncating right
+		e >>= 1;
+		b = (b * b) % m;
 	}
 
 	return result;
 }
+
+//An other method for modular exponentiation less effective on results with great number
+int modularExponentiationBis (int b, int e, int m){
+    int result = 1;
+
+    //We create an other exponent to calculate the number of iteration
+    int e2 = 0;
+
+    //Executed while the number of iterations is different of the value of the exponent
+    while(e2 < e){
+        e2++;
+        result = (b * result) % m;
+    }
+
+    return result;
+}
+
 
 //Teste si number est premier
 int isPrime (int number) {
