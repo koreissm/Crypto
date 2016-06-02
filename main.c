@@ -20,7 +20,7 @@ int main(int argc, char const *argv[]) {
 	printAllPrimitivePolynomials(50);
 
 	// testDivision();
-	testDivision2();
+	// testDivision2();
 	
 	return 0;
 	
