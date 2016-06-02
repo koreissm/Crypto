@@ -133,8 +133,50 @@ int isPrime (int number) {
 	return 1;
 }
 
-int isPrimeByEratosthene(int n) {
-	int * crible = malloc((n + 1) * sizeof(int));
+int * createEratistheneCrible(int nGiven) {
+	int n = nGiven + 1;
+	int * crible = malloc(n * sizeof(int));
+	int i, j;
+
+	// Init all values in crible to true (1)
+	for (i = 0; i < n; i++) {
+		crible[i] = 1;
+	}
+
+	// Start off at 2
+	for (i = 2; i < n; i++) {
+		// Mark all multiples of i as not primes
+		for (j = i * 2; j < n; j += i) {
+			crible[j] = 0;
+		}
+	}
+
+	return crible;
+}
+
+int displayEratostheneCrible(int nGiven) {
+	int i;
+	int n = nGiven + 1;
+	int * crible = createEratistheneCrible(nGiven);
+
+	for (i = 2; i < n; i++) {
+		if (crible[i] == 1) {
+			printf("%d ", i);
+		}
+	}
+	printf("\n");
+
+	free(crible);
+
+}
+
+int isPrimeByEratosthene(int nGiven) {
+	int i;
+	int n = nGiven + 1;
+	int * crible = createEratistheneCrible(nGiven);
+
+	return crible[nGiven];
+
 }
 
 //Génère tous les nombres premiers entre 1 et n

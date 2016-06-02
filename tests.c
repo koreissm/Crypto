@@ -67,16 +67,16 @@ void testPolynomes() {
 void testErastothene() {
 
 	puts("Is 20 prime ?");
-	isPrimeByEratosthene(20);
+	printf("%c\n", isPrimeByEratosthene(20) == 1 ? 'y' : 'n');
 
 	puts("Is 13 prime ?");
-	isPrimeByEratosthene(13);
+	printf("%c\n", isPrimeByEratosthene(13) == 1 ? 'y' : 'n');
 
 	puts("Is 67 prime ?");
-	isPrimeByEratosthene(67);
+	printf("%c\n", isPrimeByEratosthene(67) == 1 ? 'y' : 'n');
 
 	puts("Is 69 prime ?");
-	isPrimeByEratosthene(69);
+	printf("%c\n", isPrimeByEratosthene(69) == 1 ? 'y' : 'n');
 
 
 }
