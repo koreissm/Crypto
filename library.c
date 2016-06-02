@@ -268,7 +268,14 @@ int isPolynomialPrimeByEratosthene(polynomial * p) {
 //////////////////////////////////////////////////////////////// (for polynomials)
 
 int isPolynomialPrimitive(polynomial * p) {
-	int result;
+	int result, degree, maxOrder;
+
+	// get degree of p
+	degree = getDegree(p->coeffs);
+	maxOrder = pow(2, degree) - 1;
+
+	printf("degree %d maxOrder %d\n", degree, maxOrder);
+
 	return result;
 }
 
