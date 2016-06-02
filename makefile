@@ -6,7 +6,7 @@ library.o : library.c library.h
 tests.o : tests.c tests.h library.o
 	gcc -c tests.c
 
-main: tests.o
+main: main.c library.o tests.o
 	gcc -o main main.c tests.o library.o
 	./main
 
