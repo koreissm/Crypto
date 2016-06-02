@@ -52,6 +52,26 @@ int multiplication (int p, int q) {
 	}
 }
 
+//Multiplication de deux polynomes dans F2 par l'algo du Russian Peasant
+//Il nous faut un polynôme irreductible => ici : x^8 + x^4 + x^3 + x + 1
+int multiplicationWithRussianPeasant (int p, int q) {
+	int result = 0;
+
+	while (q) {
+		if (q & 1) //Si q impair, on ajoute le terme correspondant à notre somme
+			result ^= p;
+
+		if (p & 0x80000000) // Si on n'a pas dépassé la taille max d'un int (2^32 - 1 je crois)
+			p = (p << 1) ^ 0x11B; //On fait un XOR de p décalé à gauche de 1 avec le polynôme irréductible
+		else //Sinon alors il y a overflow, donc on fait décalage à gauche de p pour avoir plus de place
+			p <<= 1;
+
+		q >>= 1; //On fait bouger q de 1 (on le divise)
+	}
+
+	return result;
+}
+
 //Return the degree of p polynom
 int getDegree (int p) {
 	int i;

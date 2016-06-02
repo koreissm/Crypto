@@ -42,13 +42,14 @@ void testPolynomes() {
 	printPolynom (q, 32);
 	printf("___________________________________________________________________________________________________________________________\n");
 	printPolynom (multiplication (p, q), 32);
-	printf("Degree : %d\n", getDegree(9));
-	printf("Lead : %d\n", getLeadingCoef(9));
-	int qu, r;
-	euclidianDivision (q, p, &qu, &r);
-	printf("Q : %d, R : %d\n", qu, r);
-	printPolynom (r, 32);
-	printPolynom (qu, 32);
+	printPolynom (multiplicationWithRussianPeasant (p, q), 32);
+
+	// // Euclidian Division
+	//int qu, r;
+	//euclidianDivision (q, p, &qu, &r);
+	//printf("Q : %d, R : %d\n", qu, r);
+	//printPolynom (r, 32);
+	//printPolynom (qu, 32);
 
 	// // Troncature
 	// printPolynom (p, 32);

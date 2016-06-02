@@ -35,6 +35,7 @@ int addition (int p, int q);
  * Polynomial multiplication
  */
 int multiplication (int p, int q);
+int multiplicationWithRussianPeasant (int p, int q);
 
 /**
  * Polynomial Euclidian division
