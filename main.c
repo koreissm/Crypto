@@ -12,9 +12,10 @@ int main(int argc, char const *argv[]) {
 	//testPrimeNumbers();
 	// testPolynomes();
 	// testErastothene();
-	testErastothenePolynomial();
-	testPolynomes();
+	// testErastothenePolynomial();
+	// testPolynomes();
 	//testErastothene();
+	testPrimitive();
 	
 	return 0;
 	

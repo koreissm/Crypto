@@ -14,3 +14,5 @@ void testPrimeNumbers();
 void testPolynomes();
 
 void testErastothene();
+
+void testPrimitive();

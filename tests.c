@@ -107,5 +107,17 @@ void testErastothenePolynomial() {
 
 }
 
+void testPrimitive() {
+
+	polynomial p;
+	p.coeffs = 40;
+	p.degree = getDegree(p.coeffs);
+
+	printPolynom(p.coeffs, 32);
+	
+	isPolynomialPrimitive(&p);
+
+}
+
 
 
