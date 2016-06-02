@@ -10,6 +10,11 @@
 #include <math.h>
 #include <time.h>
 
+ typedef struct {
+ 	int coeffs;
+ 	int degree;
+ } polynomial;
+
 /*
 
 Va-t-on faire les fonctions avec des int ? (manipulation de bits) ou avec d'autres structures ?
