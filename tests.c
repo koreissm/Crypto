@@ -109,6 +109,8 @@ void testErastothenePolynomial() {
 
 void testPrimitive() {
 
+	int i;
+
 	polynomial p;
 	p.coeffs = 40;
 	p.degree = getDegree(p.coeffs);
@@ -116,6 +118,15 @@ void testPrimitive() {
 	printPolynom(p.coeffs, 32);
 	
 	isPolynomialPrimitive(&p);
+
+	puts("find divisors of 12");
+	int * tab;
+	int n;
+	getAllDivisors(12, &tab, &n);
+	printf("size is %d\n", n);
+	for (i = 0; i < n; i++) {
+		printf("i %d divisor %d\n", i, tab[i]);
+	}
 
 }
 

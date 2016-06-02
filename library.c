@@ -267,14 +267,50 @@ int isPolynomialPrimeByEratosthene(polynomial * p) {
 //////////////////////////////////////////////////////////////// Primality check
 //////////////////////////////////////////////////////////////// (for polynomials)
 
+int cmp(const void *p, const void *q) {
+     return ( *(int *)p - *(int *)q);
+}
+
+void getAllDivisors(int n, int ** results, int * count) {
+	int i;
+	*results = (int *) malloc(0);
+	*count = 0;
+
+	// iterate over all numbers below sqrt(n)
+	for (i = 2; i <= sqrt(n); i++) {
+		// if i is divisor
+		if(n % i == 0) {
+			*results = (int *) realloc(*results, sizeof(int));
+			(*results)[*count] = i;
+			printf("added %d\n", (*results)[*count]);
+			(*count)++;
+			// if dividende different, add it as well
+			if (i != (n / i)) {
+				*results = (int *) realloc(*results, sizeof(int));
+				(*results)[*count] = n / i;
+				(*count)++;
+			}
+		} 
+	}
+
+	// sort results
+	qsort(*results, *count, sizeof(int), cmp);
+}
+
 int isPolynomialPrimitive(polynomial * p) {
-	int result, degree, maxOrder;
+	int i, result, degree, maxOrder;
 
 	// get degree of p
 	degree = getDegree(p->coeffs);
 	maxOrder = pow(2, degree) - 1;
 
 	printf("degree %d maxOrder %d\n", degree, maxOrder);
+
+	// get all 
+
+	for (i = 0; i < degree; ++i) {
+		/* code */
+	}
 
 	return result;
 }
