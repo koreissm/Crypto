@@ -144,7 +144,8 @@ int * createEratistheneCrible(int nGiven) {
 	}
 
 	// Start off at 2
-	for (i = 2; i < n; i++) {
+	// Notice that we don't go any further than sqrt(n)
+	for (i = 2; i * i < n; i++) {
 		// Mark all multiples of i as not primes
 		for (j = i * 2; j < n; j += i) {
 			crible[j] = 0;

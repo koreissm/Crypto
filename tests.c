@@ -78,6 +78,8 @@ void testErastothene() {
 	puts("Is 69 prime ?");
 	printf("%c\n", isPrimeByEratosthene(69) == 1 ? 'y' : 'n');
 
+	puts("Is 1300199 prime ?");
+	printf("%c\n", isPrimeByEratosthene(1300199) == 1 ? 'y' : 'n');
 
 }
 
