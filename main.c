@@ -10,7 +10,8 @@
 int main(int argc, char const *argv[]) {
 	
 	//testPrimeNumbers();
-	testPolynomes();
+	// testPolynomes();
+	testErastothene();
 	
 	return 0;
 	

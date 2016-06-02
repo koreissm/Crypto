@@ -96,6 +96,10 @@ int isPrime (int number) {
 	return 1;
 }
 
+int isPrimeByEratosthene(int n) {
+	int * crible = malloc((n + 1) * sizeof(int));
+}
+
 //Génère tous les nombres premiers entre 1 et n
 //On incrémente par pas de 2 à chaque fois à partir de 3
 //Ce qui élimine déjà tous les nombres pairs

@@ -12,3 +12,5 @@
 void testPrimeNumbers();
 
 void testPolynomes();
+
+void testErastothene();

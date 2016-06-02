@@ -55,3 +55,23 @@ void testPolynomes() {
 	//p = modularExponentiation(p, 4, 13, 497);
 	//printPolynom(p, 32);
 }
+
+void testErastothene() {
+
+	puts("Is 20 prime ?");
+	isPrimeByEratosthene(20);
+
+	puts("Is 13 prime ?");
+	isPrimeByEratosthene(13);
+
+	puts("Is 67 prime ?");
+	isPrimeByEratosthene(67);
+
+	puts("Is 69 prime ?");
+	isPrimeByEratosthene(69);
+
+
+}
+
+
+
