@@ -219,15 +219,14 @@ void getNextPolynomial(polynomial * p) {
 
 int * createEratosthenePolynomialCrible(polynomial * p) {
 	int n = p->coeffs + 1;
-	int * crible = malloc(n * sizeof(int));
-	int i, j, k;
+	int * crible = malloc(n * n * sizeof(int));
+	int i, j;
 
 	// Init all values in crible to true (1)
-	for (i = 0; i < n; i++) {
+	for (i = 0; i < n * n; i++) {
 		crible[i] = 1;
 	}
-	crible[0] = 0;
-	crible[1] = 0;
+	crible[0] = crible[1] = crible[2] = 0;
 
 	// Every preceding polynomial is checked
 	for (i = 2; i < n; i++) {
@@ -282,10 +281,9 @@ void getAllDivisors(int n, int ** results, int * count) {
 		if(n % i == 0) {
 			*results = (int *) realloc(*results, sizeof(int));
 			(*results)[*count] = i;
-			printf("added %d\n", (*results)[*count]);
 			(*count)++;
 			// if dividende different, add it as well
-			if (i != (n / i)) {
+			if (i != (n / i) && (n / i) != n) {
 				*results = (int *) realloc(*results, sizeof(int));
 				(*results)[*count] = n / i;
 				(*count)++;
@@ -298,18 +296,53 @@ void getAllDivisors(int n, int ** results, int * count) {
 }
 
 int isPolynomialPrimitive(polynomial * p) {
-	int i, result, degree, maxOrder;
+	int i, power, result = 1, degree, maxOrder;
+	polynomial x;
+	int q, r;
+
+	// first check if is prime
+	if (isPolynomialPrimeByEratosthene(p) == 0) {
+		return 0;
+	}
+	// printf("\t");
+	// printPolynom(p->coeffs, 32);
 
 	// get degree of p
 	degree = getDegree(p->coeffs);
 	maxOrder = pow(2, degree) - 1;
 
-	printf("degree %d maxOrder %d\n", degree, maxOrder);
+	// get all divisors of max order
+	int * divisors;
+	int nDivisors;
+	getAllDivisors(maxOrder, &divisors, &nDivisors);
 
-	// get all 
+	// printf("\t\t%d divisors found for maxorder %d : ", nDivisors, maxOrder);
+	// for (i = 0; i < nDivisors; i++) {
+	// 	printf("%d, ", divisors[i]);
+	// }
+	// printf("\n");
 
-	for (i = 0; i < degree; ++i) {
-		/* code */
+	// for each divisor, test if congruent
+	for (i = 0; i < nDivisors; i++) {
+
+		if (divisors[i] > degree) {
+			continue;
+		}
+
+		// create polynomial X^d where d is the divisor
+		x.coeffs = 0;
+		x.coeffs = pow(2, divisors[i]);
+		// printf("\t\t\tdivisor %d creates polynomial ", divisors[i]);
+		// printPolynom(x.coeffs, 32);
+
+		// if rest of eucli. division is 1, then X^d is congruent to 1
+		// if not, we change the result to false, because P is not primitive
+		euclidianDivision(p->coeffs, x.coeffs, &q, &r);
+		// printf("rest ");
+		// printPolynom(r, 32);
+		if (r != 1){
+			result = 0;
+		}
 	}
 
 	return result;

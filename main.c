@@ -15,7 +15,11 @@ int main(int argc, char const *argv[]) {
 	// testErastothenePolynomial();
 	// testPolynomes();
 	//testErastothene();
-	testPrimitive();
+	// testPrimitive();
+	// puts("=================");
+	printAllPrimitivePolynomials(50);
+
+	// testDivision();
 	
 	return 0;
 	

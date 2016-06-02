@@ -84,11 +84,29 @@ void testErastothene() {
 
 }
 
+void testDivision() {
+	// X^4 + X^3 + 1
+	int a = 25;
+	printPolynom(a, 32);
+
+	// X^3
+	int b = 8;
+	printPolynom(b, 32);
+
+	// Should be X + 1
+	int q = 0;
+	// Shoul be 1
+	int r = 0;
+	euclidianDivision(a, b, &q, &r);
+	printPolynom(q, 32);
+	printPolynom(r, 32);
+}
+
 void testErastothenePolynomial() {
 
 	polynomial p;
 	p.degree = 2;
-	p.coeffs = 40;
+	p.coeffs = 100;
 	getNextPolynomial(&p);
 	getNextPolynomial(&p);
 	getNextPolynomial(&p);
@@ -126,6 +144,28 @@ void testPrimitive() {
 	printf("size is %d\n", n);
 	for (i = 0; i < n; i++) {
 		printf("i %d divisor %d\n", i, tab[i]);
+	}
+
+	puts("is this polynomial a primitive ?");
+	p.degree = 20;
+	p.coeffs = 37;
+	printPolynom(p.coeffs, p.degree);
+	printf("%c\n", isPolynomialPrimitive(&p) == 1 ? 'y' : 'n');
+
+}
+
+void printAllPrimitivePolynomials(int max) {
+
+	int i;
+	polynomial p;
+
+	printf("List of all primitive polynomials until");
+	printPolynom(max, 32);
+	for (i = 1; i < max; i++) {
+		p.coeffs = i;
+		if (isPolynomialPrimitive(&p) == 1) {
+			printPolynom(p.coeffs, 32);
+		}
 	}
 
 }
