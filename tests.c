@@ -83,5 +83,14 @@ void testErastothene() {
 
 }
 
+void testErastothenePolynomial() {
+
+	polynomial p;
+	p.degree = 10;
+	p.coeffs = 1100101;
+	getNextPolynomial(p);
+
+}
+
 
 

@@ -11,7 +11,8 @@ int main(int argc, char const *argv[]) {
 	
 	//testPrimeNumbers();
 	// testPolynomes();
-	testErastothene();
+	// testErastothene();
+	testErastothenePolynomial();
 	
 	return 0;
 	
