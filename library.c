@@ -318,6 +318,101 @@ int isPolynomialPrimeByEratosthene(polynomial * p) {
 //////////////////////////////////////////////////////////////// Primality check
 //////////////////////////////////////////////////////////////// (for polynomials)
 
+int * createExhaustivePolynomialCrible(polynomial * p) {
+	int n = p->coeffs + 1;
+	int * crible = malloc(n * n * sizeof(int));
+	int i, j, count;
+	int q, r;
+
+	// Init all values in crible to true (1)
+	for (i = 0; i < n * n; i++) {
+		crible[i] = 0;
+	}
+
+	// Every polynomial is checked
+	for (i = n; i > 1; i--) {
+		// If rest is null for every polynomial below i
+		// then its a prime
+		count = 0;
+		for (j = i - 1; j > 1; j--) {
+			euclidianDivision(i, j, &q, &r);
+			if (r != 1) {
+				count++;
+			}
+		}
+		if (count == 0) {
+			crible[i] = 1;
+		}
+	}
+
+	return crible;
+}
+
+int displayExhaustivePolynomialCrible(polynomial * p) {
+	int i;
+	int * crible = createExhaustivePolynomialCrible(p);
+
+	for (i = 0; i < p->coeffs; i++) {
+		if (crible[i] == 1) {
+			printf("%d\t", i);
+			printPolynom(i, 32);
+		}
+	}
+	printf("\n");
+
+	free(crible);
+
+}
+
+int * createExhaustivePolynomialCribleOptimized(polynomial * p) {
+	int n = p->coeffs + 1;
+	int * crible = malloc(n * n * sizeof(int));
+	int i, j, count;
+	int q, r;
+
+	// Init all values in crible to true (1)
+	for (i = 0; i < n * n; i++) {
+		crible[i] = 0;
+	}
+
+	// Every polynomial is checked
+	for (i = sqrt(n); i > 1; i--) {
+		// If rest is null for every polynomial below i
+		// then its a prime
+		count = 0;
+		for (j = i - 1; j > 1; j--) {
+			euclidianDivision(i, j, &q, &r);
+			if (r != 1) {
+				count++;
+			}
+		}
+		if (count == 0) {
+			crible[i] = 1;
+		}
+	}
+
+	return crible;
+}
+
+int displayExhaustivePolynomialCribleOptimized(polynomial * p) {
+	int i;
+	int * crible = createExhaustivePolynomialCribleOptimized(p);
+
+	for (i = 0; i < p->coeffs; i++) {
+		if (crible[i] == 1) {
+			printf("%d\t", i);
+			printPolynom(i, 32);
+		}
+	}
+	printf("\n");
+
+	free(crible);
+
+}
+
+//////////////////////////////////////////////////////////////// Primitivity check
+//////////////////////////////////////////////////////////////// (for polynomials)
+
 int cmp(const void *p, const void *q) {
      return ( *(int *)p - *(int *)q);
 }
@@ -427,7 +522,107 @@ int isPrimitive (int number) {
 //////////////////////////////////////////////////////////////// PDF encoding/decoding
 //////////////////////////////////////////////////////////////// using lfsr
 
+char * getFileContent(char * file) {
+	char * source = NULL;
+	FILE * fp = fopen(file, "rb");
+	if (fp != NULL) {
+	    /* Go to the end of the file. */
+	    if (fseek(fp, 0L, SEEK_END) == 0) {
+	        /* Get the size of the file. */
+	        long bufsize = ftell(fp);
+	        if (bufsize == -1) { /* Error */ }
 
+	        /* Allocate our buffer to that size. */
+	        source = malloc(sizeof(char) * (bufsize + 1));
+
+	        /* Go back to the start of the file. */
+	        if (fseek(fp, 0L, SEEK_SET) == 0) { /* Error */ }
+
+	        /* Read the entire file into memory. */
+	        size_t newLen = fread(source, sizeof(char), bufsize, fp);
+	        if (newLen == 0) {
+	            fputs("Error reading file", stderr);
+	        } else {
+	            source[++newLen] = '\0'; /* Just to be safe. */
+	        }
+	    }
+	    fclose(fp);
+	}
+
+	return source;
+}
+
+void pdfEncrypt(char * pdfFilename, char * keyFilename) {
+
+	char * ckey;
+	char * cfile;
+	char * cdecrypted;
+	char * ckeySelected;
+	char * cfileSelected;
+	char keyChar;
+	char fileChar;
+	int lkey, lfile, i, j, k, lchar;
+
+	// import key from file
+	ckey = getFileContent(keyFilename);
+	printf("key : %s\n", ckey);
+
+	// import file
+	cfile = getFileContent(pdfFilename);
+	printf("file : %s\n", cfile);
+
+	lkey = strlen(ckey);
+	lfile = strlen(cfile);
+	if (lkey != lfile) {
+		// fputs("Key and file are not of the same length, impossible to decrypt", stderr);
+	}
+
+	cdecrypted = malloc(lfile * sizeof(char));
+	ckeySelected = malloc(sizeof(char))+1;
+	cfileSelected = malloc(sizeof(char))+1;
+	lchar = sizeof(char);
+
+	// iterate over each char
+	// k : current position in key
+	// i : current position in file
+	k = 0;
+	puts("================");
+	for (i = 0; i < lfile; i = i+lchar) {
+
+		// select good bits from ckey into ckeySelected
+		// starting at k, 
+		memcpy(ckeySelected, &ckey[k], lchar);
+		ckeySelected[lchar+1] = '\0';
+		k = (k+lchar)%lkey;
+
+		// convert good bits to int
+		keyChar = strtol(ckeySelected, NULL, 2);
+		// cdecrypted[i] = keyChar ^ cfile[i];
+
+		// select good bits from cfile
+		memcpy(cfileSelected, &cfile[i], lchar);
+		cfileSelected[lchar+1] = '\0';
+
+		// convert good bits to int
+		fileChar = strtol(cfileSelected, NULL, 2);
+
+		cdecrypted[i] = keyChar ^ fileChar;
+		printf("%c\n", keyChar);
+
+	}
+
+	// OR
+
+	// put key (from current key position) into char
+	// then use a^b
+
+	printf("\ndecrypted : %s\n", cdecrypted);
+
+	free(ckey);
+	free(cfile);
+	free(cdecrypted);
+
+}
 
 
 

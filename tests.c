@@ -194,5 +194,42 @@ void printAllPrimitivePolynomials(int max) {
 
 }
 
+void perfCrible() {
+
+	int i;
+	double begin, end, time_spent1, time_spent2, time_spent3;
+	polynomial p;
+
+	FILE *fp;
+	fp = fopen("crible.txt", "w+");
+
+	for(p.coeffs = 2; p.coeffs < 300; p.coeffs++) {
+
+		begin = clock();
+		displayExhaustivePolynomialCrible(&p);
+		end = clock();
+		time_spent1 = (double)(end - begin) / CLOCKS_PER_SEC;
+
+		begin = clock();
+		displayExhaustivePolynomialCribleOptimized(&p);
+		end = clock();
+		time_spent2 = (double)(end - begin) / CLOCKS_PER_SEC;
+
+		begin = clock();
+		displayEratosthenePolynomialCrible(&p);
+		end = clock();
+		time_spent3 = (double)(end - begin) / CLOCKS_PER_SEC;
+
+		fprintf(fp, "%d\t%f\t%f\t%f\n", p.coeffs, time_spent1, time_spent2, time_spent3);
+
+	}
+
+	close(fp);
+
+}
+
+void testPdfEncryption() {
+	pdfEncrypt("pdf/cours-1.pdf", "pdf/key.txt");
+}
 
 

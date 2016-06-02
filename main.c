@@ -17,10 +17,13 @@ int main(int argc, char const *argv[]) {
 	//testErastothene();
 	// testPrimitive();
 	// puts("=================");
-	printAllPrimitivePolynomials(50);
+	// printAllPrimitivePolynomials(50);
 
 	// testDivision();
 	// testDivision2();
+
+	// testPdfEncryption();
+	// perfCrible();
 	
 	return 0;
 	
