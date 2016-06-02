@@ -87,9 +87,23 @@ void testErastothene() {
 void testErastothenePolynomial() {
 
 	polynomial p;
-	p.degree = 10;
-	p.coeffs = 1100101;
-	getNextPolynomial(p);
+	p.degree = 2;
+	p.coeffs = 40;
+	getNextPolynomial(&p);
+	getNextPolynomial(&p);
+	getNextPolynomial(&p);
+	printf("%d\n", p.degree);
+
+	printPolynom(p.coeffs, p.degree);
+
+	puts("displaying polynomial crible");
+	displayEratosthenePolynomialCrible(&p);
+
+	puts("Is this polynomial a prime ?");
+	p.degree = 20;
+	p.coeffs = 13;
+	printPolynom(p.coeffs, p.degree);
+	printf("%c\n", isPolynomialPrimeByEratosthene(&p) == 1 ? 'y' : 'n');
 
 }
 

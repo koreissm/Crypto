@@ -195,70 +195,74 @@ int displayEratostheneCrible(int nGiven) {
 }
 
 int isPrimeByEratosthene(int nGiven) {
-	int i;
-	int n = nGiven + 1;
 	int * crible = createEratostheneCrible(nGiven);
-
-	return crible[nGiven];
-
+	int result = crible[nGiven];
+	free(crible);
+	return result;
 }
 
 //////////////////////////////////////////////////////////////// Eratosthene Sieve
 //////////////////////////////////////////////////////////////// (for polynomials)
 
-int getNextPolynomial(polynomial p) {
+void getNextPolynomial(polynomial * p) {
 
-	printPolynom(p.coeffs, p.degree);
-	// if (polynomial.coeffs & 1) {
+	// getting next number
+	p->coeffs++;
 
-	// }
+	// we need to increment the degree if
+	// degree-th coeff is now not null
+	int selection = p->coeffs >> (p->degree + 1);
+	if (selection & 1 == 1)
+		p->degree++;
 
 }
 
-// int * createEratosthenePolynomialCrible(int polynomial, int degree) {
-// 	int * crible = malloc(n * sizeof(int));
-// 	int i, j;
+int * createEratosthenePolynomialCrible(polynomial * p) {
+	int n = p->coeffs + 1;
+	int * crible = malloc(n * sizeof(int));
+	int i, j, k;
 
-// 	// Init all values in crible to true (1)
-// 	for (i = 0; i < n; i++) {
-// 		crible[i] = 1;
-// 	}
+	// Init all values in crible to true (1)
+	for (i = 0; i < n; i++) {
+		crible[i] = 1;
+	}
+	crible[0] = 0;
+	crible[1] = 0;
 
-// 	// Start off at 2
-// 	// Notice that we don't go any further than sqrt(n)
-// 	for (i = 2; i * i < n; i++) {
-// 		// Mark all multiples of i as not primes
-// 		for (j = i * 2; j < n; j += i) {
-// 			crible[j] = 0;
-// 		}
-// 	}
+	// Every preceding polynomial is checked
+	for (i = 2; i < n; i++) {
+		// Mark all polynomials that are a multiplication
+		// of i and a polynomial under i as not primes
+		for (j = 2; j <= i; j++) {
+			crible[multiplication(i, j)] = 0;
+		}
+	}
 
-// 	return crible;
-// }
+	return crible;
+}
 
-// int displayEratosthenePolynomialCrible(int polynomialGiven, int degree) {
-// 	int i;
-// 	int polynomial = getNextPolynomial(polynomialGiven, degree);
-// 	int * crible = createEratosthenePolynomialCrible(polynomialGiven, degree);
+int displayEratosthenePolynomialCrible(polynomial * p) {
+	int i;
+	int * crible = createEratosthenePolynomialCrible(p);
 
-// 	for (i = 0; i < polynomial; i++) {
-// 		if (crible[i] == 1) {
-// 			printf("%d ", i);
-// 		}
-// 	}
-// 	printf("\n");
+	for (i = 0; i < p->coeffs; i++) {
+		if (crible[i] == 1) {
+			printf("%d\t", i);
+			printPolynom(i, 32);
+		}
+	}
+	printf("\n");
 
-// 	free(crible);
+	free(crible);
 
-// }
+}
 
-// int isPolynomialPrimeByEratosthene(int polynomial, int degree) {
-// 	int i;
-// 	int * crible = createEratosthenePolynomialCrible(polynomial, degree);
-
-	
-
-// }
+int isPolynomialPrimeByEratosthene(polynomial * p) {
+	int * crible = createEratosthenePolynomialCrible(p);
+	int result = crible[p->coeffs];
+	free(crible);
+	return result;
+}
 
 //Génère tous les nombres premiers entre 1 et n
 //On incrémente par pas de 2 à chaque fois à partir de 3
