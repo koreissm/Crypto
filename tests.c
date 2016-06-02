@@ -95,7 +95,25 @@ void testDivision() {
 
 	// Should be X + 1
 	int q = 0;
-	// Shoul be 1
+	// Should be 1
+	int r = 0;
+	euclidianDivision(a, b, &q, &r);
+	printPolynom(q, 32);
+	printPolynom(r, 32);
+}
+
+void testDivision2() {
+	// X^4 + X + 1
+	int a = 19;
+	printPolynom(a, 32);
+
+	// X^3
+	int b = 8;
+	printPolynom(b, 32);
+
+	// Should be X
+	int q = 0;
+	// Should be X + 1
 	int r = 0;
 	euclidianDivision(a, b, &q, &r);
 	printPolynom(q, 32);
@@ -148,7 +166,7 @@ void testPrimitive() {
 
 	puts("is this polynomial a primitive ?");
 	p.degree = 20;
-	p.coeffs = 37;
+	p.coeffs = 19;
 	printPolynom(p.coeffs, p.degree);
 	printf("%c\n", isPolynomialPrimitive(&p) == 1 ? 'y' : 'n');
 
