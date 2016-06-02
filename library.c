@@ -52,6 +52,43 @@ int multiplication (int p, int q) {
 	}
 }
 
+//Return the degree of p polynom
+int getDegree (int p) {
+	int i;
+	for (i = 31; i-- >= 0;) {
+		if ((((1 << i) & p) >> i) == 1)
+			return i;
+	}
+}
+
+//Return the leading coef of the p polynom
+int getLeadingCoef (int p) {
+	int i;
+	for (i = 31; i-- >= 0;) {
+		if ((((1 << i) & p) >> i) == 1)
+			return 1 << i;
+	}
+}
+
+//Calculating the euclidian Division
+//Returning the quotient and the remainder
+void euclidianDivision (int a, int b, int* q, int* r) {
+	//if (b == 0) return 0;
+	int qtmp = 0;
+	int rtmp = a;
+
+	//Stop condition => d°R < d°B or R == null
+	while (rtmp != 0 && getDegree(rtmp) >= getDegree(b)) { 
+		int t = getLeadingCoef(rtmp) / getLeadingCoef(b); //We divide the leading coef of R by the leading coef of B in order to get Q's next coef
+
+		qtmp ^= t; //
+		rtmp ^= t * b; // A = Q . lc(Q) + R => R = A + Q.lc(Q)  (lc stands for Leading coef)
+	}
+
+	*q = qtmp;
+	*r = rtmp;
+}
+
 //Troncature d'un polynome P à un dégré d
 //On additionne tous les puissances de 2 inférieures au dégré d,
 //Puis on fait une opération ET de l'entier obtenu avec le polynôme initial

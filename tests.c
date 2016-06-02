@@ -26,7 +26,8 @@ void testPrimeNumbers() {
 }
 
 void testPolynomes() {
-	int p = 501, q = 130503;
+	int p = 5, q = 63;
+	// int p = 501, q = 130503;
 
 	// // Addition
 	// printPolynom (p, 32);
@@ -41,6 +42,13 @@ void testPolynomes() {
 	printPolynom (q, 32);
 	printf("___________________________________________________________________________________________________________________________\n");
 	printPolynom (multiplication (p, q), 32);
+	printf("Degree : %d\n", getDegree(9));
+	printf("Lead : %d\n", getLeadingCoef(9));
+	int qu, r;
+	euclidianDivision (q, p, &qu, &r);
+	printf("Q : %d, R : %d\n", qu, r);
+	printPolynom (r, 32);
+	printPolynom (qu, 32);
 
 	// // Troncature
 	// printPolynom (p, 32);

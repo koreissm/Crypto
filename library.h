@@ -34,7 +34,7 @@ int multiplication (int p, int q);
 /**
  * Polynomial Euclidian division
  */
-int euclidianDivision (int p, int q);
+void euclidianDivision (int a, int b, int* q, int* r);
 
 /**
  * Polynomial division by increasing powers
@@ -70,3 +70,8 @@ int isPrimitive (int number);
  * Berlekamp-Massey algorithm
  */
 void berlekampMassey ();
+
+//Return the degree of p polynom
+int getDegree (int p);
+
+int getLeadingTerm (int p);
