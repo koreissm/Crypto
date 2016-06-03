@@ -14,9 +14,9 @@ int main(int argc, char const *argv[]) {
 	//testErastothene();
 	// testPrimitive();
 	// puts("=================");
-	//printAllPrimitivePolynomials(50);
+	printAllPrimitivePolynomials(100);
 
-	testPdfEncryption();
+	// testPdfEncryption();
 
 	// testDivision();
 	// testDivision2();

@@ -426,11 +426,13 @@ void getAllDivisors(int n, int ** results, int * count) {
 	for (i = 2; i <= sqrt(n); i++) {
 		// if i is divisor
 		if(n % i == 0) {
-			*results = (int *) realloc(*results, sizeof(int));
-			(*results)[*count] = i;
-			(*count)++;
+			// if (i != 1) {
+				*results = (int *) realloc(*results, sizeof(int));
+				(*results)[*count] = i;
+				(*count)++;
+			// }
 			// if dividende different, add it as well
-			if (i != (n / i) && (n / i) != n) {
+			if (i != (n / i)) {
 				*results = (int *) realloc(*results, sizeof(int));
 				(*results)[*count] = n / i;
 				(*count)++;
@@ -472,7 +474,7 @@ int isPolynomialPrimitive(polynomial * p) {
 	// for each divisor, test if congruent
 	for (i = 0; i < nDivisors; i++) {
 
-		if (divisors[i] > degree) {
+		if (divisors[i] < degree) {
 			continue;
 		}
 
@@ -484,10 +486,10 @@ int isPolynomialPrimitive(polynomial * p) {
 
 		// if rest of eucli. division is 1, then X^d is congruent to 1
 		// if not, we change the result to false, because P is not primitive
-		euclidianDivision(p->coeffs, x.coeffs, &q, &r);
+		euclidianDivision(x.coeffs, p->coeffs, &q, &r);
 		// printf("rest ");
 		// printPolynom(r, 32);
-		if (r != 1){
+		if (r == 1){
 			result = 0;
 		}
 	}
