@@ -10,20 +10,16 @@
 int main(int argc, char const *argv[]) {
 	
 	//testPrimeNumbers();
-	// testPolynomes();
-	// testErastothene();
-	// testErastothenePolynomial();
-	// testPolynomes();
+	testPolynomes();
 	//testErastothene();
 	// testPrimitive();
 	// puts("=================");
-	// printAllPrimitivePolynomials(50);
+	//printAllPrimitivePolynomials(50);
+
+	testPdfEncryption();
 
 	// testDivision();
 	// testDivision2();
-
-	// testPdfEncryption();
-	// perfCrible();
 	
 	return 0;
 	

@@ -26,7 +26,7 @@ void testPrimeNumbers() {
 }
 
 void testPolynomes() {
-	int p = 5, q = 63;
+	int p = 12000, q = 63444;
 	// int p = 501, q = 130503;
 
 	// // Addition
@@ -37,12 +37,25 @@ void testPolynomes() {
 	// printPolynom (addition (p, q), 32);
 
 	// // Multiplication
+	clock_t begin, end;
+	double time_spent;
+	/* here, do your time-consuming job */
+	
 	printPolynom (p, 32);
 	printf("x\n");
 	printPolynom (q, 32);
 	printf("___________________________________________________________________________________________________________________________\n");
+	begin = clock();
 	printPolynom (multiplication (p, q), 32);
+	end = clock();
+	time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+	printf("Time spent by normal multiplication : %f\n", time_spent);
+
+	begin = clock();
 	printPolynom (multiplicationWithRussianPeasant (p, q), 32);
+	end = clock();
+	time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+	printf("Time spent by russiant peasant multiplication : %f\n", time_spent);
 
 	// // Euclidian Division
 	//int qu, r;

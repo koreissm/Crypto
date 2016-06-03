@@ -9,13 +9,11 @@
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
-#include <string.h>
 
  typedef struct {
  	int coeffs;
  	int degree;
  } polynomial;
-
 
 /**
  * Displays a polynomial
@@ -51,8 +49,7 @@ int truncate (int p, int d);
 /**
  * Polynomial modular exponentiation
  */
-int effectiveModularExponentiation (int b, int e, int m);
-int modularExponentiationBis (int b, int e, int m);
+int modularExponentiation (int p, int base, int exp, int m);
 
 /**
  * Tests if given number is prime
@@ -77,8 +74,5 @@ void berlekampMassey ();
 //Return the degree of p polynom
 int getDegree (int p);
 
-//Return the leading coef of the p polynom
 int getLeadingCoef (int p);
-
-//Return the last coef (the smallest) of the p polynom
 int getLastCoef (int p);

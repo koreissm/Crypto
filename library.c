@@ -596,7 +596,7 @@ void pdfEncrypt(char * pdfFilename, char * keyFilename) {
 		k = (k+lchar)%lkey;
 
 		// convert good bits to int
-		keyChar = strtol(ckeySelected, NULL, 2);
+		keyChar = ckey[k];
 		// cdecrypted[i] = keyChar ^ cfile[i];
 
 		// select good bits from cfile
@@ -604,10 +604,10 @@ void pdfEncrypt(char * pdfFilename, char * keyFilename) {
 		cfileSelected[lchar+1] = '\0';
 
 		// convert good bits to int
-		fileChar = strtol(cfileSelected, NULL, 2);
+		fileChar = cfile[i];
 
 		cdecrypted[i] = keyChar ^ fileChar;
-		printf("%c\n", keyChar);
+		printf("%c\n", cdecrypted[i]);
 
 	}
 
