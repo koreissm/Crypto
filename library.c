@@ -594,6 +594,7 @@ void pdfEncrypt(char * pdfFilename, char * keyFilename) {
 		memcpy(ckeySelected, &ckey[k], lchar);
 		ckeySelected[lchar+1] = '\0';
 		k = (k+lchar)%lkey;
+		// printf("k is now %d\n", k);
 
 		// convert good bits to int
 		keyChar = ckey[k];
@@ -607,7 +608,7 @@ void pdfEncrypt(char * pdfFilename, char * keyFilename) {
 		fileChar = cfile[i];
 
 		cdecrypted[i] = keyChar ^ fileChar;
-		printf("%c\n", cdecrypted[i]);
+		// printf("char is now %c\n", cdecrypted[i]);
 
 	}
 
@@ -617,6 +618,10 @@ void pdfEncrypt(char * pdfFilename, char * keyFilename) {
 	// then use a^b
 
 	printf("\ndecrypted : %s\n", cdecrypted);
+
+	// Saving into file
+	FILE * fp = fopen("pdf/encrypted.pdf", "w+b");
+	fprintf(fp, "%s", cdecrypted);
 
 	free(ckey);
 	free(cfile);
