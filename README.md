@@ -2,19 +2,19 @@
 
 ## Purpose
 
-Build a library of functions manipulating polynomes on the F_2 core (Polynômes sur le corps F_2)
+Build a library of functions manipulating polynomials on the F_2 core (Polynomials in F_2)
 
 From easy to hard :
 
-- Multiplication
-- Addition
-- Division euclidienne
-- Division selon les puissances croissantes
-- Troncature
-- Exponentiation modulaire
-- Test de primalité simple (crible)
-- Test de primitivité (est que X est générateur de F_2[X]/P pour P premier).
-- Algorithme de Berkelamp-massey
+- Multiplication of Polynomials
+- Adding to Polynomials
+- Euclidian Division between two Polynomials
+- Increasing power division between two Polynomials
+- Troncate an Polynomial
+- Modular Exponentiation
+- Primality test (Erathostene's crible)
+- Primitivity test (X generator of F_2[X]/P for P primal).
+- Berkelamp-massey's Algorithm
 
 ## How to compile
 
